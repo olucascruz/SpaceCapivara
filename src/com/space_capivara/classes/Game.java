@@ -3,8 +3,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-import java.util.Timer;
-import java.util.TimerTask;
+import javax.swing.ImageIcon;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 	
@@ -15,6 +14,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	Config config = new Config();
 	Player player = new Player();
 	Enemy enemy = new Enemy();
+	Map map = new Map();
 	
 	public Game(){
 		this.setPreferredSize(new Dimension(config.getWIDTH_SCREEN(), config.getHEIGHT_SCREEN()));
@@ -38,6 +38,25 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 	
+	public void Map(Graphics g) {
+		map.setMap_data(player.getPosition_x(), player.getPosition_y(), 1);
+		map.setMap_data(enemy.getPosition_x(), enemy.getPosition_y(), 2);
+		for(int i = 0; i<10; i++) {
+			for(int j = 0; j<10; j++) {
+				if(map.getMap_data()[i][j] == 1) {
+					g.drawImage(new ImageIcon(getClass().getResource(player.getImagePlayer())).getImage(),
+							i*Config.getSIZE_GRID(),
+							j*Config.getSIZE_GRID(), null);
+				}else if(map.getMap_data()[i][j] == 2) {
+					g.drawImage(new ImageIcon(getClass().getResource(enemy.getImageEnemy())).getImage(),
+							i*Config.getSIZE_GRID(),
+							j*Config.getSIZE_GRID(), null);
+				}
+			}
+		}
+		
+		
+	}
 	
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
@@ -69,9 +88,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			}
 		}
 		
-		player.Render(g);
-		enemy.Render(g);
 		
+		Map(g);
 		g.dispose();
 		bs.show();
 				
@@ -82,9 +100,11 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			player.MoveForward();
 			enemy.MoveEnemy();
+			map.ClearMap();
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.MoveForback();
 			enemy.MoveEnemy();
+			map.ClearMap();
 		}
 	}
 	
@@ -120,7 +140,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("opa");
 		
 	}
 

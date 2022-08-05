@@ -1,9 +1,5 @@
 package com.space_capivara.classes;
 
-import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
-
 import java.util.Random;
 
 public class Enemy {
@@ -14,12 +10,15 @@ public class Enemy {
 	private int position_y = 2;
 	
 
+	public String getImageEnemy() {
+		return ImageEnemy;
+	}
+	
 	public int getPosition_x() {
 		return position_x;
 	}
 	
-	
-	
+
 	public void setPosition_x(int position_x) {
 		this.position_x = position_x;
 	}
@@ -45,16 +44,7 @@ public class Enemy {
 		 
 	}
 	
-	
-	
 
-public void Render(Graphics g) {
-	
-	g.drawImage(new ImageIcon(getClass().getResource(this.ImageEnemy)).getImage(),
-			this.getPosition_x()*Config.getSIZE_GRID(),
-			this.getPosition_y()*Config.getSIZE_GRID(), null);
-	
-}
 
 
 }

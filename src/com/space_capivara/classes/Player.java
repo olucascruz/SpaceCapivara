@@ -9,8 +9,8 @@ public class Player {
 	
 	
 	private String ImagePlayer = config.getImagesPlayer()[0];
-	private int position_x = 5;
-	private int position_y = 5;
+	private int position_x = 1;
+	private int position_y = 1;
 	private boolean can_shoot = true;
 	private String direction = "UP";
 	private int indexImage = 0;	
@@ -54,10 +54,7 @@ public class Player {
 		}else if(indexImage < 0) {
 			indexImage = 3;
 		}
-		System.out.println(indexImage);
-		System.out.println(num);
-		
-		
+				
 		ImagePlayer = config.getImagesPlayer()[indexImage];
 		
 	}
@@ -121,17 +118,6 @@ public class Player {
 				this.setDirection("LEFT");
 				break;
 		}
-	}
-	
-	
-	
-	
-	public void Render(Graphics g) {
-		
-		g.drawImage(new ImageIcon(getClass().getResource(this.ImagePlayer)).getImage(),
-				this.getPosition_x()*Config.getSIZE_GRID(),
-				this.getPosition_y()*Config.getSIZE_GRID(), null);
-		
 	}
 	
 }
