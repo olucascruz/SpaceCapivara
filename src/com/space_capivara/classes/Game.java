@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 	
@@ -12,6 +14,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	private static final long serialVersionUID = 1L;
 	Config config = new Config();
 	Player player = new Player();
+	Enemy enemy = new Enemy();
 	
 	public Game(){
 		this.setPreferredSize(new Dimension(config.getWIDTH_SCREEN(), config.getHEIGHT_SCREEN()));
@@ -31,6 +34,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		else if(player.getPosition_x() < 0) {
 			player.setPosition_x(1); 
 		}
+		
+		
 	}
 	
 	
@@ -65,6 +70,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}
 		
 		player.Render(g);
+		enemy.Render(g);
 		
 		g.dispose();
 		bs.show();
@@ -75,15 +81,25 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			player.MoveForward();
+			enemy.MoveEnemy();
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.MoveForback();
+			enemy.MoveEnemy();
 		}
 	}
 	
 	
-	
-	
-	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.RotateRight();
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.RotateLeft();
+		}
+		
+	}
 	
 	
 	
@@ -108,17 +124,5 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.RotateRight();
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.RotateLeft();
-		}
-		
-		
-		
-	}
+	
 }

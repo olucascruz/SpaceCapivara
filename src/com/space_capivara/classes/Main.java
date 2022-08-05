@@ -1,7 +1,5 @@
 package com.space_capivara.classes;
 
-import java.awt.GridLayout;
-
 import javax.swing.JFrame;
 
 public class Main{
