@@ -1,0 +1,22 @@
+package com.space_capivara.classes;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+public class Main{
+	public static void main(String[] args) {
+		Game game = new Game();
+		JFrame frame = new JFrame("Space Capivara");
+		
+		
+		frame.add(game);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		new Thread(game).start();
+	}
+}
