@@ -41,10 +41,29 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public void Map(Graphics g) {
 		map.ClearMap();
 		map.setMap_data(player.getPosition_x(), player.getPosition_y(), 1);
+		if(map.getMap_data()[enemy.getPosition_x()][enemy.getPosition_y()] == 1) {
+			player.loseLife();
+		}
+			
 		map.setMap_data(enemy.getPosition_x(), enemy.getPosition_y(), 2);
-		map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 3);
+		
+		if(map.getMap_data()[player.getShoot_position_x()][player.getShoot_position_y()] == 2) {
+			enemy.loseLife();
+		}
+		
+		if(player.istShootExist()) {
+			map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 3);
+		}else {
+			map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 0);
+		}
+		
 		for(int i = 0; i<10; i++) {
 			for(int j = 0; j<10; j++) {
+				if(map.getMap_data()[i][j] == 3) {
+					g.drawImage(new ImageIcon(getClass().getResource(player.getImageLaser())).getImage(),
+							i*Config.getSIZE_GRID(),
+							j*Config.getSIZE_GRID(), null);
+				}
 				// 1 no map representa o player
 				if(map.getMap_data()[i][j] == 1) {
 					g.drawImage(new ImageIcon(getClass().getResource(player.getImagePlayer())).getImage(),
@@ -56,10 +75,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 							i*Config.getSIZE_GRID(),
 							j*Config.getSIZE_GRID(), null);
 				// 3 no map representa o tiro	
-				}else if(map.getMap_data()[i][j] == 3) {
-					g.drawImage(new ImageIcon(getClass().getResource(player.getImageLaser())).getImage(),
-							i*Config.getSIZE_GRID(),
-							j*Config.getSIZE_GRID(), null);
+					
 				}
 			}
 		}
@@ -129,7 +145,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.RotateLeft();
 		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			player.Shoot();
+				player.Shoot();
 		}
 		
 	}

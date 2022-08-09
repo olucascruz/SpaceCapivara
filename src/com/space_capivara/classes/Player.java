@@ -3,20 +3,49 @@ package com.space_capivara.classes;
 public class Player extends Thread{
 	Config config = new Config();
 	
-	
+	private int life = 3;
 	private String ImagePlayer = config.getImagesPlayer()[0];
 	private int position_x = 5;
 	private int position_y = 9;
-	private boolean can_shoot = true;
 	private String ImageLaser = config.getImagesLaser()[0];
 	private int shoot_position_x = 0;
 	private int shoot_position_y = 0;
 	private String direction = "UP";
 	private int indexImage = 0;	
+	private boolean shootExist = false;
+	private boolean canShoot = true;
 	
 	
+
+	public boolean isCanShoot() {
+		return canShoot;
+	}
+
+	public void setCanShoot(boolean canShoot) {
+		this.canShoot = canShoot;
+	}
+
+	public boolean istShootExist() {
+		return shootExist;
+	}
+
+	public void setShootExist(boolean shootExist) {
+		this.shootExist = shootExist;
+	}
+
 	public Player() {
 		start();
+	}
+	
+	public void loseLife() {
+		try {
+			this.life--;
+			System.out.println("explosion");
+			sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public int getPosition_x() {
@@ -37,12 +66,7 @@ public class Player extends Thread{
 	public void setPosition_y(int position_y) {
 		this.position_y = position_y;
 	}
-	public boolean isCan_shoot() {
-		return can_shoot;
-	}
-	public void setCan_shoot(boolean can_shoot) {
-		this.can_shoot = can_shoot;
-	}
+	
 	public String getDirection() {
 		return direction;
 	}
@@ -130,16 +154,21 @@ public class Player extends Thread{
 	}
 	
 	public void Shoot() {
+		this.setShootExist(true);
 		this.shoot_position_x = this.position_x;
 		this.shoot_position_y = this.position_y;
+		this.setCanShoot(false);
 		switch(this.direction) {
 			case "UP":
 				try {
 					for(int i = 0; i < 3; i++) {
 						this.setImageLaser(0);
+						if(this.shoot_position_y == 0) {
+							break;
+						}
 						this.shoot_position_y = this.shoot_position_y - 1;
 						sleep(200);
-						} 
+					}
 				}
 				catch (InterruptedException e) {
 					e.printStackTrace();
@@ -147,11 +176,14 @@ public class Player extends Thread{
 				break;
 			case "RIGHT":
 				try {
-				for(int i = 0; i < 3; i++) {
-					this.setImageLaser(1);
-					this.shoot_position_x = this.shoot_position_x + 1;
-					sleep(200);
-				}
+					for(int i = 0; i < 3; i++) {
+						this.setImageLaser(1);
+						if(this.shoot_position_x == 9) {
+							break;
+						}
+						this.shoot_position_x = this.shoot_position_x + 1;
+						sleep(200);
+					}
 				}
 				catch (InterruptedException e) {
 					e.printStackTrace();
@@ -159,11 +191,14 @@ public class Player extends Thread{
 				break;
 			case "DOWN":
 				try {
-				for(int i = 0; i < 3; i++) {
-					this.setImageLaser(0);
-					this.shoot_position_y = this.shoot_position_y + 1;
-					sleep(200);
-				}
+					for(int i = 0; i < 3; i++) {
+						this.setImageLaser(0);
+						if(this.shoot_position_y == 9) {
+							break;
+						}
+						this.shoot_position_y = this.shoot_position_y + 1;
+						sleep(200);
+					}
 				}
 				catch (InterruptedException e) {
 					e.printStackTrace();
@@ -171,17 +206,22 @@ public class Player extends Thread{
 				break;
 			case "LEFT":
 				try {
-				for(int i = 0; i < 3; i++) {
-					this.setImageLaser(1);
-					this.shoot_position_x = this.shoot_position_x - 1;
-					sleep(200);
-				}
+					for(int i = 0; i < 3; i++) {
+						this.setImageLaser(1);
+						if(this.shoot_position_x == 0) {
+							break;
+						}
+						this.shoot_position_x = this.shoot_position_x - 1;						
+						sleep(200);
+					}
+					
 				}
 				catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				break;
 		}
+		this.setShootExist(false);
 	}
 	public int getShoot_position_x() {
 		return shoot_position_x;
