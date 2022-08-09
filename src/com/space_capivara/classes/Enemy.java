@@ -2,14 +2,16 @@ package com.space_capivara.classes;
 
 import java.util.Random;
 
-public class Enemy {
+public class Enemy extends Thread {
 	Config config = new Config();
 	
 	private String ImageEnemy = config.getImageEnemy();
 	private int position_x = 5;
 	private int position_y = 2;
 	
-
+	public Enemy() {
+		start();
+	}
 	public String getImageEnemy() {
 		return ImageEnemy;
 	}
@@ -43,7 +45,19 @@ public class Enemy {
 		setPosition_y(random_local_y.nextInt(10));
 		 
 	}
-	
+	public void run(){
+		try {
+			while(true) {
+				this.MoveEnemy();
+				System.out.println("a");
+				Thread.sleep(600);
+			}
+		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
 

@@ -17,4 +17,5 @@ public class Main{
 		frame.setVisible(true);
 		new Thread(game).start();
 	}
+
 }

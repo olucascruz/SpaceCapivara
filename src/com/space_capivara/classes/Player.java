@@ -1,26 +1,35 @@
 package com.space_capivara.classes;
 
-import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
-
-public class Player {
+public class Player extends Thread{
 	Config config = new Config();
 	
 	
 	private String ImagePlayer = config.getImagesPlayer()[0];
-	private int position_x = 1;
-	private int position_y = 1;
+	private int position_x = 5;
+	private int position_y = 9;
 	private boolean can_shoot = true;
+	private String ImageLaser = config.getImagesLaser()[0];
+	private int shoot_position_x = 0;
+	private int shoot_position_y = 0;
 	private String direction = "UP";
 	private int indexImage = 0;	
 	
+	
+	public Player() {
+		start();
+	}
 	
 	public int getPosition_x() {
 		return position_x;
 	}
 	public void setPosition_x(int position_x) {
 		this.position_x = position_x;
+	}
+	public void setImageLaser(int index) {
+		ImageLaser = config.getImagesLaser()[index];
+	}
+	public String getImageLaser() {
+		return ImageLaser;
 	}
 	public int getPosition_y() {
 		return position_y;
@@ -120,4 +129,66 @@ public class Player {
 		}
 	}
 	
+	public void Shoot() {
+		this.shoot_position_x = this.position_x;
+		this.shoot_position_y = this.position_y;
+		switch(this.direction) {
+			case "UP":
+				try {
+					for(int i = 0; i < 3; i++) {
+						this.setImageLaser(0);
+						this.shoot_position_y = this.shoot_position_y - 1;
+						sleep(200);
+						} 
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "RIGHT":
+				try {
+				for(int i = 0; i < 3; i++) {
+					this.setImageLaser(1);
+					this.shoot_position_x = this.shoot_position_x + 1;
+					sleep(200);
+				}
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "DOWN":
+				try {
+				for(int i = 0; i < 3; i++) {
+					this.setImageLaser(0);
+					this.shoot_position_y = this.shoot_position_y + 1;
+					sleep(200);
+				}
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "LEFT":
+				try {
+				for(int i = 0; i < 3; i++) {
+					this.setImageLaser(1);
+					this.shoot_position_x = this.shoot_position_x - 1;
+					sleep(200);
+				}
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				break;
+		}
+	}
+	public int getShoot_position_x() {
+		return shoot_position_x;
+	}
+	public int getShoot_position_y() {
+		return shoot_position_y;
+	}
+	public void run(){}
+
 }

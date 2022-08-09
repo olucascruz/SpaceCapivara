@@ -39,16 +39,25 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 	
 	public void Map(Graphics g) {
+		map.ClearMap();
 		map.setMap_data(player.getPosition_x(), player.getPosition_y(), 1);
 		map.setMap_data(enemy.getPosition_x(), enemy.getPosition_y(), 2);
+		map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 3);
 		for(int i = 0; i<10; i++) {
 			for(int j = 0; j<10; j++) {
+				// 1 no map representa o player
 				if(map.getMap_data()[i][j] == 1) {
 					g.drawImage(new ImageIcon(getClass().getResource(player.getImagePlayer())).getImage(),
 							i*Config.getSIZE_GRID(),
 							j*Config.getSIZE_GRID(), null);
+				// 2 no map representa o inimigo
 				}else if(map.getMap_data()[i][j] == 2) {
 					g.drawImage(new ImageIcon(getClass().getResource(enemy.getImageEnemy())).getImage(),
+							i*Config.getSIZE_GRID(),
+							j*Config.getSIZE_GRID(), null);
+				// 3 no map representa o tiro	
+				}else if(map.getMap_data()[i][j] == 3) {
+					g.drawImage(new ImageIcon(getClass().getResource(player.getImageLaser())).getImage(),
 							i*Config.getSIZE_GRID(),
 							j*Config.getSIZE_GRID(), null);
 				}
@@ -95,20 +104,22 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				
 	}
 	
+	
+	//Move o player e o inimigo
+	//Limpa a o map após mover o player
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			player.MoveForward();
-			enemy.MoveEnemy();
 			map.ClearMap();
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.MoveForback();
-			enemy.MoveEnemy();
 			map.ClearMap();
 		}
 	}
 	
 	
+	//Rataciona o player
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -117,6 +128,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			player.RotateRight();
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.RotateLeft();
+		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			player.Shoot();
 		}
 		
 	}
