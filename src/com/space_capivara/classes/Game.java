@@ -53,8 +53,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		if(player.istShootExist()) {
 			map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 3);
-		}else {
-			map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 0);
 		}
 		
 		for(int i = 0; i<10; i++) {
