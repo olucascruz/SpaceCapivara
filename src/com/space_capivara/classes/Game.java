@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	Menu menu = new Menu();
 	HUD hud = new HUD();
 	
-	boolean game_selected = true;
+	boolean game_selected = false;
 	
 	public Game(){
 		this.setPreferredSize(new Dimension(config.getWIDTH_SCREEN(), config.getHEIGHT_SCREEN()));
