@@ -1,7 +1,6 @@
 package com.space_capivara.classes;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class Main{
 	public static void main(String[] args) {
@@ -10,8 +9,9 @@ public class Main{
 		String filePath = "spaceThreat.wav";
 		
 		musicStuff musicObject = new musicStuff();
-		musicObject.playMusic(filePath);
 		
+		
+		musicObject.playMusic(filePath);
 		frame.add(game);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
