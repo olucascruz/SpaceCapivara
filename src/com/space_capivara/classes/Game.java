@@ -64,21 +64,22 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			for(int i = 0; i<10; i++) {
 				for(int j = 0; j<10; j++) {
 					if(map.getMap_data()[i][j] == 3) {
+						// 3 no map representa o tiro
 						g.drawImage(new ImageIcon(getClass().getResource(player.getImageLaser())).getImage(),
-								i*Config.getSIZE_GRID(),
-								j*Config.getSIZE_GRID(), null);
+								i*Config.getSIZE_GRID()+(Config.getSIZE_GRID()/3), //Laser posição eixo x 
+								j*Config.getSIZE_GRID()+(Config.getSIZE_GRID()/3), null); //Laser posição eixo y
 					}
 					// 1 no map representa o player
 					if(map.getMap_data()[i][j] == 1) {
 						g.drawImage(new ImageIcon(getClass().getResource(player.getImagePlayer())).getImage(),
-								i*Config.getSIZE_GRID(),
-								j*Config.getSIZE_GRID(), null);
+								i*Config.getSIZE_GRID(), //Player posição eixo x
+								j*Config.getSIZE_GRID(), null); //Player posição eixo y
 					// 2 no map representa o inimigo
 					}else if(map.getMap_data()[i][j] == 2) {
 						g.drawImage(new ImageIcon(getClass().getResource(enemy.getImageEnemy())).getImage(),
-								i*Config.getSIZE_GRID(),
-								j*Config.getSIZE_GRID(), null);
-					// 3 no map representa o tiro	
+								i*Config.getSIZE_GRID(), //Inimigo posição eixo x
+								j*Config.getSIZE_GRID(), null); //Inimigo posição eixo y
+						
 						
 					}
 				}
