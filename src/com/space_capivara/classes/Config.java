@@ -8,10 +8,10 @@ public class Config {
 	
 	private String[] ImagesPlayer = {"shipUP.png","shipRight.png","shipDown.png","shipLeft.png"}; //Manter a ordem
 	private String[] ImagesLaser = {"laserY.png","laserX.png"}; //Manter a ordem
-	private String ImageEnemy = "enemy.png";
+	private String[] ImageEnemy = {"enemy.png", "explosion.png"};
 	
 	
-	public String getImageEnemy() {
+	public String[] getImageEnemy() {
 		return ImageEnemy;
 	}
 

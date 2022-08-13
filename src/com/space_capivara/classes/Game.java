@@ -46,12 +46,19 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		map.ClearMap();
 		map.setMap_data(player.getPosition_x(), player.getPosition_y(), 1);
 		if(map.getMap_data()[enemy.getPosition_x()][enemy.getPosition_y()] == 1) {
+			enemy.explosion();
 			player.loseLife();
 		}
+		
 			
 		map.setMap_data(enemy.getPosition_x(), enemy.getPosition_y(), 2);
+		if(map.getMap_data()[player.getPosition_x()][player.getPosition_y()] == 2) {
+			enemy.explosion();
+			player.loseLife();
+		}
 		
 		if(map.getMap_data()[player.getShoot_position_x()][player.getShoot_position_y()] == 2) {
+			enemy.explosion();
 			enemy.loseLife();
 		}
 		

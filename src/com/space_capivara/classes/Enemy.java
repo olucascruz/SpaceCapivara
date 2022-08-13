@@ -6,7 +6,7 @@ public class Enemy extends Thread {
 	Config config = new Config();
 	
 	private int life = 3;
-	private String ImageEnemy = config.getImageEnemy();
+	private String ImageEnemy = config.getImageEnemy()[0];
 	private int position_x = 5;
 	private int position_y = 2;
 	
@@ -19,6 +19,7 @@ public class Enemy extends Thread {
 		try {
 			this.life--;
 			System.out.println("explosion enemy");
+			explosion();
 			sleep(200);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -26,8 +27,16 @@ public class Enemy extends Thread {
 		}
 	}
 	
+	
+	public void explosion() {
+		setImageEnemy(1);
+	}
+	
 	public String getImageEnemy() {
 		return ImageEnemy;
+	}
+	public void setImageEnemy(int n) {
+		ImageEnemy = config.getImageEnemy()[n];
 	}
 	
 	public int getPosition_x() {
@@ -54,7 +63,7 @@ public class Enemy extends Thread {
 	public void MoveEnemy() {
 		Random random_local_x = new Random();
 		Random random_local_y = new Random();
-		
+		setImageEnemy(0);
 		setPosition_x(random_local_x.nextInt(10)); 
 		setPosition_y(random_local_y.nextInt(10));
 		 
@@ -63,7 +72,7 @@ public class Enemy extends Thread {
 		try {
 			while(true) {
 				this.MoveEnemy();
-				Thread.sleep(600);
+				Thread.sleep(800);
 			}
 		
 		} catch (InterruptedException e) {
