@@ -13,17 +13,10 @@ public class Player extends Thread{
 	private String direction = "UP";
 	private int indexImage = 0;	
 	private boolean shootExist = false;
-	private boolean canShoot = true;
+	
 	
 	
 
-	public boolean isCanShoot() {
-		return canShoot;
-	}
-
-	public void setCanShoot(boolean canShoot) {
-		this.canShoot = canShoot;
-	}
 
 	public boolean istShootExist() {
 		return shootExist;
@@ -157,7 +150,6 @@ public class Player extends Thread{
 		this.setShootExist(true);
 		this.shoot_position_x = this.position_x;
 		this.shoot_position_y = this.position_y;
-		this.setCanShoot(false);
 		switch(this.direction) {
 			case "UP":
 				try {
