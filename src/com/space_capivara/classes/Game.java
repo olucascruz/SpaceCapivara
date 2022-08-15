@@ -23,6 +23,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	HUD hud = new HUD();
 	
 	boolean game_selected = false;
+	boolean game_over_lost = false;
+	boolean game_over_win = false;
 	
 	public Game(){
 		this.setPreferredSize(new Dimension(config.getWIDTH_SCREEN(), config.getHEIGHT_SCREEN()));
@@ -163,7 +165,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			g.drawString(String.valueOf(enemy.getLife())+"%", 810, 580);
 			
 			
-		} else {
+		} else if (!game_over_lost && !game_over_win){ // Menu
 			// Background
 			if(!menu.isTeam_selected()) {
 				// Fundo
@@ -197,6 +199,26 @@ public class Game extends Canvas implements Runnable, KeyListener{
 						600, null);
 			}
 			
+		} else { // End game screen
+			// Background
+			g.drawImage(new ImageIcon(getClass().getResource("space.png")).getImage(), 0, 0,
+					config.getWIDTH_SCREEN(),
+					config.getHEIGHT_SCREEN(), null);
+			if(game_over_lost) {
+				// Fracasso...
+				g.drawImage(new ImageIcon(getClass().getResource("capivara_death.gif")).getImage(),
+						300, 70, 400, 400, null);
+				// Texto
+				g.drawImage(new ImageIcon(getClass().getResource("game_over_lost.png")).getImage(),
+						300, 370, 400, 400, null);
+			} else {
+				// Fracasso...
+				g.drawImage(new ImageIcon(getClass().getResource("capivara.gif")).getImage(),
+						300, 70, 400, 400, null);
+				// Texto
+				g.drawImage(new ImageIcon(getClass().getResource("game_over_win.png")).getImage(),
+						300, 370, 400, 400, null);
+			}
 		}
 		
 	}
