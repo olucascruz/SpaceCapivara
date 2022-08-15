@@ -23,7 +23,6 @@ public class Enemy extends ObjectMobile {
 			
 			soundObject.playSound(filePath);
 			this.setLife(this.getLife() - 10);
-			System.out.println("explosion enemy");
 			explosion();
 			sleep(200);
 		} catch (InterruptedException e) {

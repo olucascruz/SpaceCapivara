@@ -33,7 +33,6 @@ public class Player extends ObjectMobile{
 	{
 		try {
 			this.setLife(this.getLife() - 1);
-			System.out.println("explosion");
 			sleep(200);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

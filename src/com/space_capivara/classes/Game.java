@@ -3,10 +3,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class Game extends Canvas implements Runnable, KeyListener{
@@ -15,12 +11,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	Config config = new Config();
-	Player player = new Player();
-	Enemy enemy = new Enemy();
-	Map map = new Map();
-	Menu menu = new Menu();
-	HUD hud = new HUD();
+	private Config config = new Config();
+	private Player player = new Player();
+	private Enemy enemy = new Enemy();
+	private Map map = new Map();
+	private Menu menu = new Menu();
+	private HUD hud = new HUD();
 	
 	boolean game_selected = false;
 	boolean game_over_lost = false;

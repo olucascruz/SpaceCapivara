@@ -7,7 +7,6 @@ public class Main{
 		Game game = new Game();
 		JFrame frame = new JFrame("Space Capivara");
 		String filePath = "spaceThreat.wav";
-		
 		musicStuff musicObject = new musicStuff();
 		
 		
