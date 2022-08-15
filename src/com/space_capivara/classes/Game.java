@@ -97,25 +97,44 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			}
 			
 			// HUD
-			if(player.getLife() == 1) {
+			switch (player.getLife()) {
+
+			case 1:
+
 				// Capivara triste
 				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_triste())).getImage(), 750, 50,
 						200,
 						200, null);
-				
-			}
-			if(player.getLife() == 2) {
-			// Capivara raivosa
+
+				break;
+
+			case 2:
+
+				// Capivara raivosa
 				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_raivosa())).getImage(), 750, 50,
 						200,
 						200, null);
-			}
-			if(player.getLife() == 3) {
+
+				break;
+
+			case 3:
+
 				// Capivara feliz
 				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_feliz())).getImage(), 750, 50,
 						200,
 						200, null);
-			}
+
+				break;
+
+			default:
+
+				// Capivara triste
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_triste())).getImage(), 750, 50,
+						200,
+						200, null);
+
+			};
+			
 			
 			// Vidas
 			if(player.getLife() > 0) {
@@ -137,6 +156,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			g.drawImage(new ImageIcon(getClass().getResource(hud.getInimigo())).getImage(), 810, 430,
 					80,
 					80, null);
+			
+			//Vida Inimiga
+			g.setColor(Color.red);
+			g.setFont(new Font("serif", Font.BOLD, 60));
+			g.drawString(String.valueOf(enemy.getLife())+"%", 810, 580);
+			
+			
 		} else {
 			// Background
 			if(!menu.isTeam_selected()) {

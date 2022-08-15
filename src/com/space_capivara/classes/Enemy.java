@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Enemy extends ObjectMobile {
 	
-	private int life = 3;
+	private int life = 100;
 	private String ImageEnemy = getConfig().getImageEnemy()[0];
 	
 	
@@ -17,7 +17,7 @@ public class Enemy extends ObjectMobile {
 	
 	public void loseLife() {
 		try {
-			this.setLife(this.getLife() - 1);
+			this.setLife(this.getLife() - 10);
 			System.out.println("explosion enemy");
 			explosion();
 			sleep(200);
