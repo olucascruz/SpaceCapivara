@@ -50,6 +50,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		if(map.getMap_data()[enemy.getPosition_x()][enemy.getPosition_y()] == 1) {
 			enemy.explosion();
 			player.loseLife();
+			if (player.getLife() == 0) {
+				game_selected = false;
+				game_over_lost = true;
+			}
 		}
 		
 			
@@ -57,11 +61,19 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		if(map.getMap_data()[player.getPosition_x()][player.getPosition_y()] == 2) {
 			enemy.explosion();
 			player.loseLife();
+			if (player.getLife() == 0) {
+				game_selected = false;
+				game_over_lost = true;
+			}
 		}
 		
 		if(map.getMap_data()[player.getLaser().getPosition_x()][player.getLaser().getPosition_y()] == 2) {
 			enemy.explosion();
 			enemy.loseLife();
+			if (enemy.getLife() == 0) {
+				game_selected = false;
+				game_over_win																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 = true;
+			}
 		}
 		
 		if(player.istShootExist()) {
