@@ -8,6 +8,11 @@ public class Laser extends ObjectMobile{
     }
 
     public void Shoot(String direction, int x, int y){
+		String filePath = "lazer.wav";
+		
+		musicStuff soundObject = new musicStuff();
+		
+		soundObject.playSound(filePath);
         setPosition_x(x);
         setPosition_y(y);
             switch (direction) {

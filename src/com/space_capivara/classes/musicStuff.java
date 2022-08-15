@@ -32,4 +32,23 @@ public class musicStuff {
 			ex.printStackTrace();
 		}
 	}
+	void playSound (String soundlocation)
+	{
+		try 
+		{
+			File soundPath = new File(soundlocation);
+			
+			if (soundPath.exists()) 
+			{
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(soundPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
 }

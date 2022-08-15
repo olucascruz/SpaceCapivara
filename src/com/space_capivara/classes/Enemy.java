@@ -17,6 +17,11 @@ public class Enemy extends ObjectMobile {
 	
 	public void loseLife() {
 		try {
+			String filePath = "Explosion.wav";
+			
+			musicStuff soundObject = new musicStuff();
+			
+			soundObject.playSound(filePath);
 			this.setLife(this.getLife() - 10);
 			System.out.println("explosion enemy");
 			explosion();
