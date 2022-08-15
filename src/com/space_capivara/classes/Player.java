@@ -75,23 +75,31 @@ public class Player extends ObjectMobile{
 	public void MoveForward() 
 	{
 		if(this.direction == "UP") 
-		{
-			setPosition_y(getPosition_y() - 1);
+		{	
+			if(getPosition_y() != 0) {
+				setPosition_y(getPosition_y() - 1);
+			}
 			
 		} 
 		else if(this.direction == "RIGHT") 
 		{
-			setPosition_x(getPosition_x() + 1);
+			if(getPosition_x() != 9) {
+				setPosition_x(getPosition_x() + 1);
+			}
 			
 		} 
 		else if(this.direction == "LEFT") 
 		{
-			setPosition_x(getPosition_x() - 1);
+			if(getPosition_x() != 0) {
+				setPosition_x(getPosition_x() - 1);
+			}
 			
 		} 
 		else if(this.direction == "DOWN") 
 		{
-			setPosition_y(getPosition_y() + 1);
+			if(getPosition_y() != 9) {
+				setPosition_y(getPosition_y() + 1);
+			}
 			
 		}
 		
@@ -101,22 +109,30 @@ public class Player extends ObjectMobile{
 	{
 		if(this.direction == "UP") 
 		{
-			setPosition_y(getPosition_y() + 1);
+			if(getPosition_y() != 9) {
+				setPosition_y(getPosition_y() + 1);
+			}
 			
 		} 
 		else if(this.direction == "RIGHT") 
 		{
+			if(getPosition_x() != 0) {
 			setPosition_x(getPosition_x() - 1);
+			}
 			
 		} 
 		else if(this.direction == "LEFT") 
-		{
-			setPosition_x(getPosition_x() + 1);
+		{	
+			if(getPosition_x() != 9) {
+				setPosition_x(getPosition_x() + 1);
+			}
 			
 		} 
 		else if(this.direction == "DOWN") 
 		{
-			setPosition_y(getPosition_y() - 1);
+			if(getPosition_y() != 0) {
+				setPosition_y(getPosition_y() - 1);
+			}
 			
 		}
 			

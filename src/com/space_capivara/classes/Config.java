@@ -5,13 +5,13 @@ public class Config {
 	private final static int WIDTH_SCREEN = 700 + WIDTH_HUD;
 	private final static int HEIGHT_SCREEN = 700;
 	private final static int SIZE_GRID = HEIGHT_SCREEN / 10;
-	private final static int DISTANCE_SHOOT = 5;
-	private final static int SPEED_SHOOT = 50;
+	private final static int DISTANCE_SHOOT = 5; // Acima de 10 não faz diferença
+	private final static int SPEED_SHOOT = 50; // Quanto menor mais rápido
 	
 	
 	private String[] ImagesPlayer = {"shipUP.png","shipRight.png","shipDown.png","shipLeft.png"}; //Manter a ordem
 	private String[] ImagesLaser = {"laserY.png","laserX.png"}; //Manter a ordem
-	private String[] ImageEnemy = {"enemy.png", "explosion.png"};
+	private String[] ImageEnemy = {"enemy.png", "explosion.png"}; //Manter a ordem
 	
 	
 	public String[] getImageEnemy() {
