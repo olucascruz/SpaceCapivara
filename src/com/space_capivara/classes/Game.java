@@ -61,13 +61,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			player.loseLife();
 		}
 		
-		if(map.getMap_data()[player.getShoot_position_x()][player.getShoot_position_y()] == 2) {
+		if(map.getMap_data()[player.getLaser().getPosition_x()][player.getLaser().getPosition_y()] == 2) {
 			enemy.explosion();
 			enemy.loseLife();
 		}
 		
 		if(player.istShootExist()) {
-			map.setMap_data(player.getShoot_position_x(), player.getShoot_position_y(), 3);
+			map.setMap_data(player.getLaser().getPosition_x(), player.getLaser().getPosition_y(), 3);
 		}
 		
 		if(game_selected) {
@@ -76,7 +76,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				for(int j = 0; j<10; j++) {
 					if(map.getMap_data()[i][j] == 3) {
 						// 3 no map representa o tiro
-						g.drawImage(new ImageIcon(getClass().getResource(player.getImageLaser())).getImage(),
+						g.drawImage(new ImageIcon(getClass().getResource(player.getLaser().getImageLaser())).getImage(),
 								i*Config.getSIZE_GRID()+(Config.getSIZE_GRID()/3), //Laser posição eixo x 
 								j*Config.getSIZE_GRID()+(Config.getSIZE_GRID()/3), null); //Laser posição eixo y
 					}

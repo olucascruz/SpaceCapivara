@@ -2,19 +2,14 @@ package com.space_capivara.classes;
 
 public class Player extends ObjectMobile{
 
-	
 	private int life = 3;
 	private String ImagePlayer = getConfig().getImagesPlayer()[0];
-	private String ImageLaser = getConfig().getImagesLaser()[0];
-	private int shoot_position_x = 0;
-	private int shoot_position_y = 0;
 	private String direction = "UP";
 	private int indexImage = 0;	
 	private boolean shootExist = false;
+	private Laser laser = new Laser();
 	
 	
-	
-
 	public Player()
 	{
 		start();
@@ -37,24 +32,13 @@ public class Player extends ObjectMobile{
 	public void loseLife() 
 	{
 		try {
-			this.life--;
+			this.setLife(this.getLife() - 1);
 			System.out.println("explosion");
 			sleep(200);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	
-	public void setImageLaser(int index) 
-	{
-		ImageLaser = getConfig().getImagesLaser()[index];
-	}
-	
-	public String getImageLaser() 
-	{
-		return ImageLaser;
 	}
 	
 	
@@ -179,98 +163,23 @@ public class Player extends ObjectMobile{
 	
 	public void Shoot() {
 		this.setShootExist(true);
-		this.shoot_position_x = getPosition_x();
-		this.shoot_position_y = getPosition_y();
-		
-		switch(this.direction) {
-			case "UP":
-				try {
-					for(int i = 0; i < 3; i++)
-					{
-						this.setImageLaser(0);
-						if(this.shoot_position_y == 0) 
-						{
-							break;
-						}
-						this.shoot_position_y = this.shoot_position_y - 1;
-						sleep(200);
-					}
-				}
-				catch (InterruptedException e) 
-				{
-					e.printStackTrace();
-				}
-				break;
-				
-			case "RIGHT":
-				try 
-				{
-					for(int i = 0; i < 3; i++) 
-					{
-						this.setImageLaser(1);
-						
-						if(this.shoot_position_x == 9) 
-						{
-							break;
-						}
-						this.shoot_position_x = this.shoot_position_x + 1;
-						sleep(200);
-					}
-				}
-				catch (InterruptedException e) 
-				{
-					e.printStackTrace();
-				}
-				break;
-				
-			case "DOWN":
-				try {
-					for(int i = 0; i < 3; i++)
-					{
-						this.setImageLaser(0);
-						if(this.shoot_position_y == 9)
-						{
-							break;
-						}
-						this.shoot_position_y = this.shoot_position_y + 1;
-						sleep(200);
-					}
-				}
-				catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
-				break;
-				
-			case "LEFT":
-				try {
-					for(int i = 0; i < 3; i++)
-					{
-						this.setImageLaser(1);
-						if(this.shoot_position_x == 0) 
-						{
-							break;
-						}
-						this.shoot_position_x = this.shoot_position_x - 1;						
-						sleep(200);
-					}
-					
-				}
-				catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				break;
-		}
+		laser.Shoot(this.getDirection(), getPosition_x(),getPosition_y());
 		this.setShootExist(false);
 	}
-	public int getShoot_position_x() {
-		return shoot_position_x;
-	}
 	
-	public int getShoot_position_y() {
-		return shoot_position_y;
-	}
 	
 	public void run(){}
+
+	public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
+	
+	public Laser getLaser() {
+		return laser;
+	}
 
 }
