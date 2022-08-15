@@ -97,31 +97,42 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			}
 			
 			// HUD
-			
-			// Capivara feliz
-			g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_feliz())).getImage(), 750, 50,
-					200,
-					200, null);
+			if(player.getLife() == 1) {
+				// Capivara triste
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_triste())).getImage(), 750, 50,
+						200,
+						200, null);
+				
+			}
+			if(player.getLife() == 2) {
 			// Capivara raivosa
-			g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_raivosa())).getImage(), 750, 50,
-					200,
-					200, null);
-			// Capivara triste
-			g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_triste())).getImage(), 750, 50,
-					200,
-					200, null);
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_raivosa())).getImage(), 750, 50,
+						200,
+						200, null);
+			}
+			if(player.getLife() == 3) {
+				// Capivara feliz
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCapi_feliz())).getImage(), 750, 50,
+						200,
+						200, null);
+			}
 			
 			// Vidas
-			g.drawImage(new ImageIcon(getClass().getResource(hud.getCoracao1())).getImage(), 750, 280,
+			if(player.getLife() > 0) {
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCoracao1())).getImage(), 750, 280,
 					50,
 					50, null);
-			g.drawImage(new ImageIcon(getClass().getResource(hud.getCoracao2())).getImage(), 825, 280,
+			}
+			if(player.getLife() > 1) {
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCoracao2())).getImage(), 825, 280,
 					50,
 					50, null);
-			g.drawImage(new ImageIcon(getClass().getResource(hud.getCoracao3())).getImage(), 900, 280,
+			}
+			if(player.getLife() > 2) {
+				g.drawImage(new ImageIcon(getClass().getResource(hud.getCoracao3())).getImage(), 900, 280,
 					50,
 					50, null);
-			
+			}
 			// Nave inimiga
 			g.drawImage(new ImageIcon(getClass().getResource(hud.getInimigo())).getImage(), 810, 430,
 					80,
