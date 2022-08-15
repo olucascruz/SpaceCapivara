@@ -2,22 +2,22 @@ package com.space_capivara.classes;
 
 import java.util.Random;
 
-public class Enemy extends Thread {
-	Config config = new Config();
+public class Enemy extends ObjectMobile {
 	
 	private int life = 3;
-	private String ImageEnemy = config.getImageEnemy()[0];
-	private int position_x = 5;
-	private int position_y = 2;
+	private String ImageEnemy = getConfig().getImageEnemy()[0];
+	
 	
 	public Enemy() {
 		start();
+		setPosition_x(5);
+		setPosition_y(1);
 	}
 	
 	
 	public void loseLife() {
 		try {
-			this.life--;
+			this.setLife(this.getLife() - 1);
 			System.out.println("explosion enemy");
 			explosion();
 			sleep(200);
@@ -36,29 +36,10 @@ public class Enemy extends Thread {
 		return ImageEnemy;
 	}
 	public void setImageEnemy(int n) {
-		ImageEnemy = config.getImageEnemy()[n];
-	}
-	
-	public int getPosition_x() {
-		return position_x;
-	}
-	
-
-	public void setPosition_x(int position_x) {
-		this.position_x = position_x;
+		ImageEnemy = getConfig().getImageEnemy()[n];
 	}
 	
 	
-	
-	public int getPosition_y() {
-		return position_y;
-	}
-	
-	
-	
-	public void setPosition_y(int position_y) {
-		this.position_y = position_y;
-	}
 	
 	public void MoveEnemy() {
 		Random random_local_x = new Random();
@@ -82,5 +63,13 @@ public class Enemy extends Thread {
 	}
 
 
+	public int getLife() {
+		return life;
+	}
+
+
+	public void setLife(int life) {
+		this.life = life;
+	}
 
 }

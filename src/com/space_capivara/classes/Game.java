@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		this.addKeyListener(this);
 	}
 	
-	public void tick() {
+	public void update() {
 		if(game_selected) {
 			if(player.getPosition_y() > 9) {
 				player.setPosition_y(8); 
@@ -269,7 +269,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public void run() {
 		
 		while(true) {
-			tick();
+			update();
 			render();
 			try {
 				Thread.sleep(1000/60);
